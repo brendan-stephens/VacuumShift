@@ -1,0 +1,27 @@
+{
+  "name": "vacuumshift",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "packages/worker",
+    "packages/shared"
+  ],
+  "scripts": {
+    "stack:start": "bash scripts/stack.sh start",
+    "stack:stop": "bash scripts/stack.sh stop",
+    "stack:status": "bash scripts/stack.sh status",
+    "stack:logs": "bash scripts/stack.sh logs",
+    "dev:web": "npm run dev -w @vacuumshift/web",
+    "web:clean": "rm -rf apps/web/.next",
+    "dev:functions": "supabase functions serve",
+    "dev:worker": "npm run dev -w @vacuumshift/worker",
+    "dev:worker:watch": "npm run dev:watch -w @vacuumshift/worker",
+    "stop:worker": "pkill -f 'packages/worker.*src/index.ts' 2>/dev/null || true",
+    "worker:once": "npm run once -w @vacuumshift/worker",
+    "auth:token": "bash scripts/auth-token.sh",
+    "register:local": "bash scripts/register-local.sh",
+    "db:reset": "supabase db reset && bash scripts/ensure-default-user.sh",
+    "db:push": "supabase db push",
+    "types:db": "supabase gen types typescript --local 2>/dev/null > apps/web/src/lib/supabase/database.types.ts"
+  }
+}

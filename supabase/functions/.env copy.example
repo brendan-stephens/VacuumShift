@@ -1,0 +1,9 @@
+# Edge Functions do not need API keys in env.
+# - SUPABASE_URL is injected by `supabase functions serve`
+# - Publishable key comes from the client `apikey` header on each request
+#
+# Optional non-SUPABASE_ vars can be passed via:
+#   supabase functions serve --env-file supabase/functions/.env
+#
+# Log full pooler connection strings (includes DB password) in functions logs:
+# DEBUG_CONNECTION_STRINGS=1
