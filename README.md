@@ -3,6 +3,15 @@
 Monitor Postgres database bloat, run scheduled or on-demand **VACUUM** / **REINDEX**, and track results over time.   
 Built for [Supabase](https://supabase.com) projects, but any Postgres connection string works.
 
+### Dashboard
+![VacuumShift dashboard](./resources/dashboard.png)
+
+### Scheduling
+![VacuumShift dashboard](./resources/schedule.png)
+
+### Job Detail
+![VacuumShift dashboard](./resources/detail.png)
+
 ## What it does
 
 - **Supabase import** — list projects with a personal access token, provision a read-only `vacuumshift` role, queue an initial check.
@@ -13,7 +22,6 @@ Built for [Supabase](https://supabase.com) projects, but any Postgres connection
 ## How it works
 
 Three pieces run together:
-
 
 | Piece                                     | Role                                                                                              |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
@@ -27,8 +35,6 @@ Three pieces run together:
 - A job is queued (`initial` check by default).
 - The **worker** must be running to claim jobs, connect, collect bloat, and optionally run VACUUM/REINDEX.
 - Results land in Supabase; the UI refreshes job status and metrics.
-
-
 
 **Supabase Postgres 15/16:** `vacuumshift` can monitor and check bloat, but full maintenance usually needs additinoal grants.  
 Supabase **Postgres 17+:** can grant maintenance rights to `vacuumshift` on import.
